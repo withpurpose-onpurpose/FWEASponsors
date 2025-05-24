@@ -11,8 +11,8 @@
   <div class="container">
     <h1>FWEA Sponsor Grid Generator</h1>
 
-    <label for="chapter">Select Chapter or Committee:</label>
-    <select id="chapter">
+    <label for="chapterSelect">Select Chapter or Committee:</label>
+    <select id="chapterSelect">
       <option value="FD15">West Coast Chapter</option>
       <option value="FD33">WR3 Committee</option>
       <option value="FD32">Wastewater Process Committee</option>
@@ -36,20 +36,20 @@
     </select>
 
     <div class="button-group">
-      <button id="loadGrid">Load Grid</button>
-      <button id="downloadImage">Download Image</button>
+      <button id="loadGridBtn">Load Grid</button>
+      <button id="downloadBtn">Download Image</button>
     </div>
 
-    <div id="sponsorGridWrapper">
-      <div id="sponsorGrid"></div>
+    <div id="sponsorGridWrapper" class="fweaSponsorGallery" data-gallery-id="">
+      <div id="sponsorGrid" style="display: grid; justify-items: center; align-items: center;"></div>
     </div>
 
-    <footer class="footer">
-      <p>Created by <a href="https://mishagency.com" target="_blank">Laura Cooley of Mish Agency</a> for your convenience</p>
-    </footer>
+<p class="credit">
+      Created by <a href="https://mishagency.com" target="_blank">Laura Cooley of Mish Agency</a> for your convenience.
+    </p>
   </div>
 
-  <!-- This MUST be at the bottom of body so the DOM is loaded before the script runs -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
