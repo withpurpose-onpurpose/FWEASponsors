@@ -10,19 +10,19 @@
 <body>
   <div class="container">
     <h1>FWEA Sponsor Grid Generator</h1>
+
     <label for="chapterSelect">Choose a chapter or committee:</label>
     <select id="chapterSelect">
-      <option value="">-- Select --</option>
       <option value="FD15">West Coast Chapter</option>
-      <option value="FD33">WR3 Committee</option>
+      <option value="FD33">Water Resources, Reuse and Resiliency (WR3)</option>
       <option value="FD32">Wastewater Process Committee</option>
       <option value="FD31">Utility Management Committee</option>
-      <option value="FD30">Students & Young Professionals (SYPC)</option>
+      <option value="FD30">Students and Young Professionals Committee (SYPC)</option>
       <option value="FD35">Southwest Chapter</option>
       <option value="FD34">Southeast Chapter</option>
       <option value="FD22">South Florida Chapter</option>
       <option value="FD29">Safety Committee</option>
-      <option value="FD28">Public Communications & Outreach (PCOC)</option>
+      <option value="FD28">Public Communications & Outreach Committee (PCOC)</option>
       <option value="FD27">Operations Challenge Committee</option>
       <option value="FD11">Manasota Chapter</option>
       <option value="FD6">FWEA Global Sponsors</option>
@@ -34,16 +34,23 @@
       <option value="FD24">Biosolids Committee</option>
       <option value="FD23">Air Quality Committee</option>
     </select>
-    <button id="loadGrid">Load Grid</button>
-    <button id="captureImage">Download Image</button>
-    <div id="sponsorGridWrapper" class="fweaSponsorGallery" style="margin-top: 30px;">
-      <div id="sponsorGrid"></div>
+
+    <button onclick="handleGenerate()">Load Grid</button>
+    <button onclick="downloadGridAsImage()">Download Image</button>
+
+    <div id="sponsorGridWrapper"
+         class="fweaSponsorGallery"
+         data-gallery-id=""
+         style="max-width: 100%; margin: 0 auto; overflow: visible;">
+      <div id="sponsorGrid"
+           style="display: grid; justify-items: center; align-items: center;">
+      </div>
+    </div>
+
+    <div id="creator-note">
+      Created by <a href="https://mishagency.com" target="_blank">Laura Cooley of Mish Agency</a> for your convenience.
     </div>
   </div>
-
-  <p style="text-align: center; font-size: 12px; color: #545251; margin-top: 40px;">
-    Created by <a href="https://mishagency.com" target="_blank" style="color: #086cb6; text-decoration: none;">Laura Cooley of Mish Agency</a> for your convenience.
-  </p>
 
   <script src="script.js"></script>
 </body>
