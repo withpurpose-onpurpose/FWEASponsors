@@ -26,10 +26,12 @@ function handleGenerate() {
 
       const totalImages = imageLinks.length;
       const colCount = Math.min(totalImages, 5);
+
       grid.style.display = "grid";
       grid.style.gridTemplateColumns = `repeat(${colCount}, 1fr)`;
       grid.style.justifyItems = "center";
       grid.style.alignItems = "center";
+      grid.style.gap = "8px";
 
       imageLinks.forEach((link) => {
         const img = link.querySelector("img");
@@ -40,6 +42,7 @@ function handleGenerate() {
           anchor.style.display = "block";
           anchor.style.padding = "2px";
           anchor.style.boxSizing = "border-box";
+          anchor.style.width = "100%";
 
           img.style.display = "block";
           img.style.width = "100%";
@@ -59,10 +62,27 @@ function handleGenerate() {
 
 function downloadGridAsImage() {
   const grid = document.getElementById("sponsorGridWrapper");
-  html2canvas(grid).then((canvas) => {
-    const link = document.createElement("a");
-    link.download = "sponsor-grid.png";
-    link.href = canvas.toDataURL();
-    link.click();
+
+  // Wait for all images to load before taking the screenshot
+  const images = grid.querySelectorAll("img");
+  const allLoaded = Array.from(images).map(
+    (img) =>
+      new Promise((resolve) => {
+        if (img.complete) {
+          resolve();
+        } else {
+          img.onload = resolve;
+          img.onerror = resolve;
+        }
+      })
+  );
+
+  Promise.all(allLoaded).then(() => {
+    html2canvas(grid).then((canvas) => {
+      const link = document.createElement("a");
+      link.download = "sponsor-grid.png";
+      link.href = canvas.toDataURL();
+      link.click();
+    });
   });
 }
