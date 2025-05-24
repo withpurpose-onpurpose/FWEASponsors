@@ -1,65 +1,56 @@
 body {
   font-family: 'Poppins', sans-serif;
-  margin: 20px;
   background-color: #ffffff;
-  color: #545251;
+  color: #000;
+  margin: 0;
+  padding: 20px;
 }
 
-h1 {
-  color: #086db6;
-  font-size: 1.75rem;
-  margin-bottom: 20px;
-}
-
-label {
-  font-weight: 500;
-  color: #086db6;
-}
-
-select, button {
-  margin: 10px 10px 10px 0;
-  padding: 10px 14px;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-family: 'Poppins', sans-serif;
+.container {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
 }
 
 button {
-  background-color: #5d9f44;
-  color: #ffffff;
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #086db6;
+  color: white;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #4a8238;
+  background-color: #009bd9;
+}
+
+select {
+  margin: 15px 0;
+  padding: 8px;
+  font-size: 16px;
+}
+
+#sponsorGridWrapper {
+  margin-top: 20px;
+  overflow: visible;
 }
 
 #sponsorGrid {
-  margin-top: 20px;
-  gap: 8px 12px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 8px; /* tighter spacing */
 }
 
-.fweaSponsorGallery a {
-  display: block;
-  width: 100%;
-  padding: 2px;
-  box-sizing: border-box;
+.footer {
+  margin-top: 30px;
+  font-size: 0.9em;
 }
 
-.fweaSponsorGallery img {
-  display: block;
-  width: 100%;
-  max-height: 80px;
-  object-fit: contain;
-  margin: 0 auto;
-}
-
-/* Optional: Background tone or separator */
-hr {
-  border: none;
-  border-top: 1px solid #ccc;
-  margin: 30px 0;
+.footer a {
+  color: #5d9f44;
+  text-decoration: none;
 }
