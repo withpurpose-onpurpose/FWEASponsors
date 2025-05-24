@@ -5,9 +5,10 @@ function handleGenerate() {
   const grid = document.getElementById("sponsorGrid");
   const downloadBtn = document.getElementById("downloadImage");
 
-  grid.innerHTML = ""; // Clear previous grid
+  // Always start hidden to prevent premature clicking
+  downloadBtn.style.display = "none";
+  grid.innerHTML = "";
   wrapper.setAttribute("data-gallery-id", galleryId);
-  downloadBtn.style.display = "none"; // Hide until fully loaded
 
   const url = `https://mms.fwea.org/slideshows/slick_feed.php?org_id=FWEA&ban=${galleryId}&speed=5&view_feed=Y`;
 
@@ -21,7 +22,7 @@ function handleGenerate() {
       const totalImages = imageLinks.length;
       const colCount = Math.min(totalImages, 5);
       grid.style.gridTemplateColumns = `repeat(${colCount}, 1fr)`;
-      grid.style.columnGap = "8px"; // slightly tighter
+      grid.style.columnGap = "8px";
       grid.style.rowGap = "8px";
 
       const loadPromises = [];
@@ -42,7 +43,7 @@ function handleGenerate() {
           img.style.objectFit = "contain";
           img.style.margin = "0 auto";
 
-          // Wait for image load
+          // Wait for the image to load
           loadPromises.push(new Promise(resolve => {
             if (img.complete) resolve();
             else {
@@ -56,12 +57,12 @@ function handleGenerate() {
         }
       });
 
-      // Once all images load, show the button
+      // Show download button only when all images are loaded
       Promise.all(loadPromises).then(() => {
         downloadBtn.style.display = "inline-block";
       });
     })
     .catch(error => {
-      console.error("Error loading sponsor images:", error);
+      console.error("Error fetching sponsor data:", error);
     });
 }
