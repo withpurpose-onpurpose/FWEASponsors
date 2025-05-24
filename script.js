@@ -31,7 +31,7 @@ function handleGenerate() {
       grid.style.gridTemplateColumns = `repeat(${colCount}, 1fr)`;
       grid.style.justifyItems = "center";
       grid.style.alignItems = "center";
-      grid.style.gap = "8px";
+      grid.style.gap = "2px";
 
       imageLinks.forEach((link) => {
         const img = link.querySelector("img");
