@@ -1,13 +1,13 @@
 window.addEventListener("DOMContentLoaded", () => {
-  const loadBtn = document.getElementById("loadGridBtn");
-  const downloadBtn = document.getElementById("downloadBtn");
+  const loadBtn = document.getElementById("loadGrid");
+  const downloadBtn = document.getElementById("downloadImage");
 
   loadBtn.addEventListener("click", handleGenerate);
   downloadBtn.addEventListener("click", downloadGridAsImage);
 });
 
 function handleGenerate() {
-  const select = document.getElementById("chapterSelect");
+  const select = document.getElementById("chapter");
   const galleryId = select.value;
   const wrapper = document.getElementById("sponsorGridWrapper");
   const grid = document.getElementById("sponsorGrid");
@@ -26,7 +26,10 @@ function handleGenerate() {
 
       const totalImages = imageLinks.length;
       const colCount = Math.min(totalImages, 5);
+      grid.style.display = "grid";
       grid.style.gridTemplateColumns = `repeat(${colCount}, 1fr)`;
+      grid.style.justifyItems = "center";
+      grid.style.alignItems = "center";
 
       imageLinks.forEach((link) => {
         const img = link.querySelector("img");
