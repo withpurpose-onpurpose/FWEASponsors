@@ -1,37 +1,16 @@
-const feeds = {
-  "West Coast Chapter": "FD15",
-  "WR3 Committee": "FD33",
-  "Wastewater Process Committee": "FD32",
-  "Utility Management Committee": "FD31",
-  "SYPC Committee": "FD30",
-  "Southwest Chapter": "FD35",
-  "Southeast Chapter": "FD34",
-  "South Florida Chapter": "FD22",
-  "Safety Committee": "FD29",
-  "PCOC Committee": "FD28",
-  "Operations Challenge Committee": "FD27",
-  "Manasota Chapter": "FD11",
-  "Global Sponsors": "FD6",
-  "First Coast Chapter": "FD21",
-  "Emerging Water Technology Committee": "FD26",
-  "Contractors Committee": "FD36",
-  "Collection Systems Committee": "FD25",
-  "Central Florida Chapter": "FD20",
-  "Biosolids Committee": "FD24",
-  "Air Quality Committee": "FD23"
-};
-
-document.getElementById("chapterSelect").addEventListener("change", function () {
-  const selected = this.value;
-  if (!selected) return;
-
-  const galleryId = feeds[selected];
-  const feedUrl = `https://mms.fwea.org/slideshows/slick_feed.php?org_id=FWEA&ban=${galleryId}&speed=5&view_feed=Y`;
-
+function handleGenerate() {
+  const select = document.getElementById("chapterSelect");
+  const galleryId = select.value;
+  const wrapper = document.getElementById("sponsorGridWrapper");
   const grid = document.getElementById("sponsorGrid");
-  grid.innerHTML = ""; // Clear previous
 
-  fetch(feedUrl)
+  // Clear old content
+  grid.innerHTML = "";
+  wrapper.setAttribute("data-gallery-id", galleryId);
+
+  const url = `https://mms.fwea.org/slideshows/slick_feed.php?org_id=FWEA&ban=${galleryId}&speed=5&view_feed=Y`;
+
+  fetch(url)
     .then(response => response.text())
     .then(html => {
       const tempDiv = document.createElement("div");
@@ -49,7 +28,6 @@ document.getElementById("chapterSelect").addEventListener("change", function () 
           anchor.href = link.href;
           anchor.target = "_blank";
           anchor.style.display = "block";
-          anchor.style.width = "100%";
           anchor.style.padding = "2px";
           anchor.style.boxSizing = "border-box";
 
@@ -63,17 +41,18 @@ document.getElementById("chapterSelect").addEventListener("change", function () 
           grid.appendChild(anchor);
         }
       });
-
-      document.getElementById("downloadBtn").style.display = "inline-block";
+    })
+    .catch(error => {
+      console.error("Error fetching sponsor data:", error);
     });
-});
+}
 
-document.getElementById("downloadBtn").addEventListener("click", function () {
+function downloadGridAsImage() {
   const grid = document.getElementById("sponsorGridWrapper");
   html2canvas(grid).then(canvas => {
     const link = document.createElement("a");
-    link.download = "FWEA-sponsor-grid.png";
+    link.download = "sponsor-grid.png";
     link.href = canvas.toDataURL();
     link.click();
   });
-});
+}
