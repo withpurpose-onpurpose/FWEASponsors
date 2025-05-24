@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Collection Systems Committee Sponsors</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    #sponsorGrid {
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      gap: 8px 12px;
+    }
+    .fweaSponsorGallery a {
+      display: block;
+      width: 100%;
+      padding: 2px;
+      box-sizing: border-box;
+    }
+    .fweaSponsorGallery img {
+      display: block;
+      width: 100%;
+      max-height: 80px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Collection Systems Committee Sponsors</h1>
+  <div id="sponsorGridWrapper"
+       class="fweaSponsorGallery"
+       data-gallery-id="FD25-collections"
+       style="max-width: 100%; margin: 0 auto; overflow: visible;">
+    <div id="sponsorGrid"
+         style="
+           display: grid;
+           justify-items: center;
+           align-items: center;">
+    </div>
+  </div>
+
+  <script>
+    fetch("https://mms.fwea.org/slideshows/slick_feed.php?org_id=FWEA&ban=FD25&speed=5&view_feed=Y")
+      .then(response => response.text())
+      .then(html => {
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = html;
+
+        const imageLinks = tempDiv.querySelectorAll("a");
+        const grid = document.getElementById("sponsorGrid");
+
+        const totalImages = imageLinks.length;
+        const colCount = Math.min(totalImages, 5);
+        grid.style.gridTemplateColumns = `repeat(${colCount}, 1fr)`;
+
+        imageLinks.forEach(link => {
+          const img = link.querySelector("img");
+          if (img) {
+            const anchor = document.createElement("a");
+            anchor.href = link.href;
+            anchor.target = "_blank";
+            anchor.style.display = "block";
+            anchor.style.width = "100%";
+            anchor.style.padding = "2px";
+            anchor.style.boxSizing = "border-box";
+
+            img.style.display = "block";
+            img.style.width = "100%";
+            img.style.maxHeight = "80px";
+            img.style.objectFit = "contain";
+            img.style.margin = "0 auto";
+
+            anchor.appendChild(img);
+            grid.appendChild(anchor);
+          }
+        });
+      });
+  </script>
+</body>
+</html>
