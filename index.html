@@ -2,31 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FWEA Sponsor Grid Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
   <div class="container">
     <h1>FWEA Sponsor Grid Generator</h1>
 
-    <label for="chapterSelect">Choose a chapter or committee:</label>
-    <select id="chapterSelect">
+    <label for="chapter">Select Chapter or Committee:</label>
+    <select id="chapter">
       <option value="FD15">West Coast Chapter</option>
       <option value="FD33">WR3 Committee</option>
       <option value="FD32">Wastewater Process Committee</option>
       <option value="FD31">Utility Management Committee</option>
-      <option value="FD30">Students & Young Professionals (SYPC)</option>
+      <option value="FD30">SYPC Committee</option>
       <option value="FD35">Southwest Chapter</option>
       <option value="FD34">Southeast Chapter</option>
       <option value="FD22">South Florida Chapter</option>
       <option value="FD29">Safety Committee</option>
-      <option value="FD28">Public Communications & Outreach (PCOC)</option>
-      <option value="FD27">Operations Challenge Committee</option>
+      <option value="FD28">PCOC Committee</option>
+      <option value="FD27">Operations Challenge</option>
       <option value="FD11">Manasota Chapter</option>
-      <option value="FD6">Global Sponsors</option>
+      <option value="FD6">FWEA Global</option>
       <option value="FD21">First Coast Chapter</option>
-      <option value="FD26">Emerging Water Tech Committee</option>
+      <option value="FD26">Emerging Water Technology</option>
       <option value="FD36">Contractors Committee</option>
       <option value="FD25">Collection Systems Committee</option>
       <option value="FD20">Central Florida Chapter</option>
@@ -34,20 +35,21 @@
       <option value="FD23">Air Quality Committee</option>
     </select>
 
-    <button onclick="handleGenerate()">Load Grid</button>
-    <button onclick="downloadGridAsImage()">Download Image</button>
-
-    <div id="sponsorGridWrapper" class="fweaSponsorGallery" style="max-width: 100%; margin: 0 auto; overflow: visible;">
-      <div id="sponsorGrid" style="display: grid; justify-items: center; align-items: center;"></div>
+    <div class="button-group">
+      <button id="loadGrid">Load Grid</button>
+      <button id="downloadImage">Download Image</button>
     </div>
 
-    <p class="footer-note">
-      Created by <a href="https://mishagency.com" target="_blank">Laura Cooley of Mish Agency</a> for your convenience.
-    </p>
+    <div id="sponsorGridWrapper">
+      <div id="sponsorGrid"></div>
+    </div>
+
+    <footer class="footer">
+      <p>Created by <a href="https://mishagency.com" target="_blank">Laura Cooley of Mish Agency</a> for your convenience</p>
+    </footer>
   </div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <!-- This MUST be at the bottom of body so the DOM is loaded before the script runs -->
   <script src="script.js"></script>
 </body>
 </html>
