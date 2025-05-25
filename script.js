@@ -22,29 +22,36 @@ function handleGenerate() {
       gridContainer.innerHTML = "";
 
       layoutOptions.forEach((cols) => {
-        const wrapperRow = document.createElement("div");
-        wrapperRow.style.display = "flex";
-        wrapperRow.style.alignItems = "center";
-        wrapperRow.style.justifyContent = "space-between";
+        // Title and button wrapper
+        const headerRow = document.createElement("div");
+        headerRow.style.display = "flex";
+        headerRow.style.justifyContent = "space-between";
+        headerRow.style.alignItems = "center";
+        headerRow.style.marginTop = "30px";
 
         const title = document.createElement("h3");
         title.textContent = `${select.options[select.selectedIndex].text} - ${cols} Column Grid`;
-        wrapperRow.appendChild(title);
+        title.style.margin = "0";
 
-        const note = document.createElement("p");
-        note.textContent = "Tip: Use Snipping Tool or Snagit to screenshot the desired layout.";
-        note.style.fontSize = "0.9em";
-        note.style.margin = "4px 0 12px 0";
-        note.style.color = "#444";
+        const instruction = document.createElement("p");
+        instruction.textContent = "Use Snipping Tool or Snagit to screenshot this layout.";
+        instruction.style.fontSize = "0.9em";
+        instruction.style.margin = "4px 0 12px 0";
+        instruction.style.color = "#555";
 
+        headerRow.appendChild(title);
+        gridContainer.appendChild(headerRow);
+        gridContainer.appendChild(instruction);
+
+        // Grid wrapper
         const gridWrapper = document.createElement("div");
         gridWrapper.className = "fweaSponsorGallery variant";
         gridWrapper.style.display = "grid";
         gridWrapper.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-        gridWrapper.style.gap = "4px";
-        gridWrapper.style.margin = "10px 0";
-        gridWrapper.style.maxWidth = "1000px";
-        gridWrapper.style.marginInline = "auto";
+        gridWrapper.style.gap = "6px";
+        gridWrapper.style.maxWidth = "800px";
+        gridWrapper.style.margin = "10px auto 40px";
+        gridWrapper.style.alignItems = "center";
 
         imageLinks.forEach((linkEl) => {
           const link = document.createElement("a");
@@ -52,7 +59,6 @@ function handleGenerate() {
           link.target = "_blank";
           link.style.display = "block";
           link.style.padding = "2px";
-          link.style.boxSizing = "border-box";
 
           const img = linkEl.querySelector("img");
           if (img) {
@@ -61,7 +67,7 @@ function handleGenerate() {
             clone.alt = img.alt || "Sponsor logo";
             clone.style.display = "block";
             clone.style.width = "100%";
-            clone.style.maxHeight = "80px";
+            clone.style.maxHeight = "70px";
             clone.style.objectFit = "contain";
             clone.style.margin = "0 auto";
             link.appendChild(clone);
@@ -70,10 +76,9 @@ function handleGenerate() {
           gridWrapper.appendChild(link);
         });
 
-        gridContainer.appendChild(wrapperRow);
-        gridContainer.appendChild(note);
         gridContainer.appendChild(gridWrapper);
       });
     })
     .catch((err) => console.error("Failed to fetch grid:", err));
 }
+
