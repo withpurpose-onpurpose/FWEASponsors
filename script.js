@@ -16,7 +16,7 @@ function handleGenerate() {
   const chapterName = select.options[select.selectedIndex].text;
   const url = `https://mms.fwea.org/slideshows/slick_feed.php?org_id=FWEA&ban=${galleryId}&speed=5&view_feed=Y`;
 
-  const infoText = `These logos are coming from Photo Gallery ${galleryId} in the FWEA Content Manager → Photo Gallery module.`;
+  const infoText = `These logos are coming from Photo Gallery ${galleryId} in the FWEA Content Manager → Slide Show Manager module.`;
   document.getElementById("sourceInfo").textContent = infoText;
 
   fetch(url)
