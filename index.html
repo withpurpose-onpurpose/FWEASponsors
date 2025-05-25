@@ -11,8 +11,8 @@
   <div class="container">
     <h1>FWEA Sponsor Grid Generator</h1>
 
-    <label for="chapter">Select Chapter or Committee:</label>
-    <select id="chapter">
+    <label for="chapterSelect">Select Chapter or Committee:</label>
+    <select id="chapterSelect">
       <option value="FD15">West Coast Chapter</option>
       <option value="FD33">WR3 Committee</option>
       <option value="FD32">Wastewater Process Committee</option>
@@ -35,17 +35,14 @@
       <option value="FD23">Air Quality Committee</option>
     </select>
 
-    <div class="button-group">
-      <button id="loadGrid">Load Grid</button>
-      <button id="downloadImage" style="display: none;">Download Image</button>
-    </div>
+    <button id="loadGridBtn">Load Grid</button>
 
-    <div id="sponsorGridWrapper">
-      <div id="sponsorGrid"></div>
-    </div>
+    <div id="gridOutput"></div>
 
     <footer class="footer">
-      <p>Created by <a href="https://mishagency.com" target="_blank">Laura Cooley of Mish Agency</a> for your convenience</p>
+      <p>
+        Created by <a href="https://mishagency.com" target="_blank">Laura Cooley of Mish Agency</a> for your convenience.
+      </p>
     </footer>
   </div>
 

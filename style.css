@@ -1,53 +1,59 @@
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #ffffff;
-  color: #000;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 20px;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .container {
-  max-width: 900px;
-  margin: auto;
+  max-width: 1000px;
+  margin: 0 auto;
   text-align: center;
 }
 
-button {
-  margin: 10px;
-  padding: 10px 20px;
+h1 {
+  color: #086db6;
+  font-size: 24px;
+}
+
+label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+}
+
+select {
+  padding: 8px;
   font-size: 16px;
-  background-color: #086db6;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin: 8px;
+  padding: 10px 16px;
+  background-color: #009bd9;
   color: white;
   border: none;
   border-radius: 8px;
+  font-weight: 500;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #009bd9;
+  background-color: #086db6;
 }
 
-select {
-  margin: 15px 0;
-  padding: 8px;
-  font-size: 16px;
-}
-
-#sponsorGridWrapper {
-  margin-top: 20px;
-  overflow: visible;
-}
-
-#sponsorGrid {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  gap: 8px; /* tighter spacing */
+.fweaSponsorGallery.variant {
+  margin-bottom: 20px;
 }
 
 .footer {
-  margin-top: 30px;
+  margin-top: 40px;
   font-size: 0.9em;
+  color: #545251;
 }
 
 .footer a {
