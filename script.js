@@ -1,4 +1,4 @@
-// Option B: Load images normally and allow html2canvas to try capturing them directly
+// Option B Revised: Load image grid with inline links, disable html2canvas download due to CORS
 
 window.addEventListener("DOMContentLoaded", () => {
   const loadBtn = document.getElementById("loadGridBtn");
@@ -15,7 +15,7 @@ function handleGenerate() {
     .then((html) => {
       const tempDiv = document.createElement("div");
       tempDiv.innerHTML = html;
-      const imageLinks = tempDiv.querySelectorAll("a img");
+      const imageLinks = tempDiv.querySelectorAll("a");
 
       const layoutOptions = [1, 2, 3, 4, 5];
       const gridContainer = document.getElementById("gridOutput");
@@ -31,9 +31,11 @@ function handleGenerate() {
         title.textContent = `${select.options[select.selectedIndex].text} - ${cols} Column Grid`;
         wrapperRow.appendChild(title);
 
-        const downloadBtn = document.createElement("button");
-        downloadBtn.textContent = "Download this Grid as PNG";
-        downloadBtn.className = "download-button";
+        const note = document.createElement("p");
+        note.textContent = "Tip: Use Snipping Tool or Snagit to screenshot the desired layout.";
+        note.style.fontSize = "0.9em";
+        note.style.margin = "4px 0 12px 0";
+        note.style.color = "#444";
 
         const gridWrapper = document.createElement("div");
         gridWrapper.className = "fweaSponsorGallery variant";
@@ -41,38 +43,37 @@ function handleGenerate() {
         gridWrapper.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
         gridWrapper.style.gap = "4px";
         gridWrapper.style.margin = "10px 0";
+        gridWrapper.style.maxWidth = "1000px";
+        gridWrapper.style.marginInline = "auto";
 
-        imageLinks.forEach((imgEl) => {
-          const img = new Image();
-          img.crossOrigin = "anonymous";
-          img.src = imgEl.src;
-          img.style.width = "100%";
-          img.style.maxHeight = "80px";
-          img.style.objectFit = "contain";
-          gridWrapper.appendChild(img);
+        imageLinks.forEach((linkEl) => {
+          const link = document.createElement("a");
+          link.href = linkEl.href;
+          link.target = "_blank";
+          link.style.display = "block";
+          link.style.padding = "2px";
+          link.style.boxSizing = "border-box";
+
+          const img = linkEl.querySelector("img");
+          if (img) {
+            const clone = document.createElement("img");
+            clone.src = img.src;
+            clone.alt = img.alt || "Sponsor logo";
+            clone.style.display = "block";
+            clone.style.width = "100%";
+            clone.style.maxHeight = "80px";
+            clone.style.objectFit = "contain";
+            clone.style.margin = "0 auto";
+            link.appendChild(clone);
+          }
+
+          gridWrapper.appendChild(link);
         });
 
-        downloadBtn.onclick = () => downloadGridAsImage(gridWrapper);
-
         gridContainer.appendChild(wrapperRow);
+        gridContainer.appendChild(note);
         gridContainer.appendChild(gridWrapper);
-        wrapperRow.appendChild(downloadBtn);
       });
     })
     .catch((err) => console.error("Failed to fetch grid:", err));
-}
-
-function downloadGridAsImage(container) {
-  html2canvas(container, {
-    useCORS: true,
-    allowTaint: false,
-    backgroundColor: null
-  }).then((canvas) => {
-    const link = document.createElement("a");
-    link.download = "sponsor-grid.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  }).catch((err) => {
-    console.error("Download failed:", err);
-  });
 }
