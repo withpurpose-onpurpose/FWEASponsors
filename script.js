@@ -1,18 +1,12 @@
-// Option B Revised: Load image grid with inline links, disable html2canvas download due to CORS
+// Load image grid with inline links, with multiple column layout options
 
 window.addEventListener("DOMContentLoaded", () => {
   const loadBtn = document.getElementById("loadGridBtn");
   loadBtn.addEventListener("click", handleGenerate);
 
-  // Add notice once at top
   const infoBox = document.createElement("div");
-  infoBox.style.fontSize = "14px";
-  infoBox.style.margin = "12px auto 24px auto";
-  infoBox.style.textAlign = "center";
-  infoBox.style.maxWidth = "800px";
-  infoBox.style.color = "#444";
-  infoBox.style.lineHeight = "1.4";
   infoBox.id = "sourceInfo";
+  infoBox.className = "info-box";
   document.getElementById("gridOutput").before(infoBox);
 });
 
@@ -22,7 +16,7 @@ function handleGenerate() {
   const chapterName = select.options[select.selectedIndex].text;
   const url = `https://mms.fwea.org/slideshows/slick_feed.php?org_id=FWEA&ban=${galleryId}&speed=5&view_feed=Y`;
 
-  const infoText = `These logos are coming from Photo Gallery ${galleryId} in the FWEA Content Manager -> Photo Gallery module.`;
+  const infoText = `These logos are coming from Photo Gallery ${galleryId} in the FWEA Content Manager → Photo Gallery module.`;
   document.getElementById("sourceInfo").textContent = infoText;
 
   fetch(url)
@@ -38,35 +32,29 @@ function handleGenerate() {
 
       layoutOptions.forEach((cols) => {
         const sectionWrapper = document.createElement("div");
-        sectionWrapper.style.marginBottom = "48px";
+        sectionWrapper.className = "grid-section";
 
+        // Layout Title and Tip
         const header = document.createElement("h3");
-        header.textContent = `${chapterName} - ${cols} Column Grid`;
-        header.style.marginBottom = "4px";
-        header.style.fontWeight = "bold";
-        gridContainer.appendChild(header);
+        header.textContent = `${chapterName} – ${cols} Column Grid`;
+        sectionWrapper.appendChild(header);
 
         const tip = document.createElement("p");
+        tip.className = "tip";
         tip.textContent = "Tip: Use Snipping Tool or Snagit to screenshot the desired layout.";
-        tip.style.fontSize = "0.9em";
-        tip.style.color = "#444";
-        tip.style.marginBottom = "12px";
-        gridContainer.appendChild(tip);
+        sectionWrapper.appendChild(tip);
 
-        const section = document.createElement("div");
-        section.style.border = "1px solid #5d9f44";
-        section.style.padding = "16px";
-        section.style.marginTop = "12px";
+        // Border box container
+        const borderedBox = document.createElement("div");
+        borderedBox.className = "border-box";
 
-        const thanks = document.createElement("h1");
+        // Thank You Message
+        const thanks = document.createElement("div");
+        thanks.className = "thankyou";
         thanks.textContent = `Thank you to our ${chapterName} Sponsors!`;
-        thanks.style.fontFamily = "Poppins, sans-serif";
-        thanks.style.fontSize = "32px";
-        thanks.style.color = "#086db6";
-        thanks.style.textAlign = "center";
-        thanks.style.margin = "12px 0 24px 0";
-        section.appendChild(thanks);
+        borderedBox.appendChild(thanks);
 
+        // Grid Container
         const gridWrapper = document.createElement("div");
         gridWrapper.className = "fweaSponsorGallery variant";
         gridWrapper.style.display = "grid";
@@ -99,10 +87,10 @@ function handleGenerate() {
           gridWrapper.appendChild(link);
         });
 
-        section.appendChild(gridWrapper);
-        sectionWrapper.appendChild(section);
+        borderedBox.appendChild(gridWrapper);
+        sectionWrapper.appendChild(borderedBox);
         gridContainer.appendChild(sectionWrapper);
       });
     })
-    .catch((err) => console.error("Failed to fetch grid:", err));
+    .catch((err) => console.error("Failed to fetch sponsor logos:", err));
 }
