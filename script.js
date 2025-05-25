@@ -77,12 +77,13 @@ function downloadGridAsImage() {
   const grid = document.getElementById("sponsorGridWrapper");
 
   html2canvas(grid, {
-    useCORS: true,
-    scale: 2, // high-resolution image
-  }).then((canvas) => {
-    const link = document.createElement("a");
-    link.download = "fwea-sponsor-grid.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
+  useCORS: true,
+  allowTaint: false,
+  logging: true,
+}).then((canvas) => {
+  const link = document.createElement("a");
+  link.download = "sponsor-grid.png";
+  link.href = canvas.toDataURL();
+  link.click();
   });
 }
