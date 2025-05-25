@@ -23,37 +23,39 @@ function handleGenerate() {
       gridContainer.innerHTML = "";
 
       layoutOptions.forEach((cols) => {
-        const section = document.createElement("div");
-        section.style.border = "1px solid #5d9f44";
-        section.style.padding = "12px";
-        section.style.marginBottom = "24px";
+        const sectionWrapper = document.createElement("div");
+        sectionWrapper.style.marginBottom = "48px";
 
         const header = document.createElement("h3");
         header.textContent = `${chapterName} - ${cols} Column Grid`;
         header.style.marginBottom = "4px";
-        section.appendChild(header);
+        sectionWrapper.appendChild(header);
 
         const tip = document.createElement("p");
         tip.textContent = "Tip: Use Snipping Tool or Snagit to screenshot the desired layout.";
         tip.style.fontSize = "0.9em";
         tip.style.color = "#444";
-        tip.style.marginBottom = "8px";
-        section.appendChild(tip);
+        tip.style.marginBottom = "12px";
+        sectionWrapper.appendChild(tip);
 
-        const thanks = document.createElement("div");
+        const section = document.createElement("div");
+        section.style.border = "1px solid #5d9f44";
+        section.style.padding = "16px";
+
+        const thanks = document.createElement("h1");
         thanks.textContent = `Thank you to our ${chapterName} Sponsors!`;
         thanks.style.fontFamily = "Poppins, sans-serif";
-        thanks.style.fontSize = "16px";
+        thanks.style.fontSize = "24px";
         thanks.style.color = "#086db6";
         thanks.style.textAlign = "center";
-        thanks.style.marginBottom = "8px";
+        thanks.style.marginBottom = "16px";
         section.appendChild(thanks);
 
         const gridWrapper = document.createElement("div");
         gridWrapper.className = "fweaSponsorGallery variant";
         gridWrapper.style.display = "grid";
         gridWrapper.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-        gridWrapper.style.gap = "6px";
+        gridWrapper.style.gap = "4px";
         gridWrapper.style.margin = "auto";
         gridWrapper.style.maxWidth = "960px";
 
@@ -82,7 +84,8 @@ function handleGenerate() {
         });
 
         section.appendChild(gridWrapper);
-        gridContainer.appendChild(section);
+        sectionWrapper.appendChild(section);
+        gridContainer.appendChild(sectionWrapper);
       });
     })
     .catch((err) => console.error("Failed to fetch grid:", err));
