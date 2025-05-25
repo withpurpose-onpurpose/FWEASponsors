@@ -1,3 +1,4 @@
+/* Base font and page style */
 body {
   font-family: "Poppins", sans-serif;
   margin: 0;
@@ -6,31 +7,50 @@ body {
   color: #000000;
 }
 
+/* Centered container */
 .container {
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
 }
 
+/* Main heading */
 h1 {
   color: #086db6;
   font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
 }
 
+/* Subheadings for each grid layout */
+h3 {
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+/* Labels */
 label {
   font-weight: 500;
   display: block;
   margin-bottom: 8px;
+  text-align: left;
 }
 
+/* Dropdown */
 select {
   padding: 8px;
   font-size: 16px;
   margin-bottom: 16px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  width: 100%;
+  max-width: 300px;
 }
 
+/* Buttons */
 button {
   margin: 8px;
   padding: 10px 16px;
@@ -46,10 +66,15 @@ button:hover {
   background-color: #086db6;
 }
 
+/* Grid wrapper styling for each layout */
 .fweaSponsorGallery.variant {
-  margin-bottom: 20px;
+  display: grid;
+  gap: 4px;
+  margin: auto;
+  max-width: 960px;
 }
 
+/* Footer */
 .footer {
   margin-top: 40px;
   font-size: 0.9em;
@@ -59,4 +84,29 @@ button:hover {
 .footer a {
   color: #5d9f44;
   text-decoration: none;
+}
+
+/* Tip text */
+.tip {
+  font-size: 0.9em;
+  color: #444;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+/* Section heading inside green border */
+.grid-thanks {
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #086db6;
+  text-align: center;
+  margin: 12px 0 24px 0;
+}
+
+/* Section border frame */
+.grid-section {
+  border: 1px solid #5d9f44;
+  padding: 16px;
+  margin-top: 12px;
 }
