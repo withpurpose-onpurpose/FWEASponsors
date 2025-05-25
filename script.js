@@ -3,6 +3,17 @@
 window.addEventListener("DOMContentLoaded", () => {
   const loadBtn = document.getElementById("loadGridBtn");
   loadBtn.addEventListener("click", handleGenerate);
+
+  // Add notice once at top
+  const infoBox = document.createElement("div");
+  infoBox.style.fontSize = "14px";
+  infoBox.style.margin = "12px auto 24px auto";
+  infoBox.style.textAlign = "center";
+  infoBox.style.maxWidth = "800px";
+  infoBox.style.color = "#444";
+  infoBox.style.lineHeight = "1.4";
+  infoBox.id = "sourceInfo";
+  document.getElementById("gridOutput").before(infoBox);
 });
 
 function handleGenerate() {
@@ -10,6 +21,9 @@ function handleGenerate() {
   const galleryId = select.value;
   const chapterName = select.options[select.selectedIndex].text;
   const url = `https://mms.fwea.org/slideshows/slick_feed.php?org_id=FWEA&ban=${galleryId}&speed=5&view_feed=Y`;
+
+  const infoText = `These logos are coming from Photo Gallery ${galleryId} in the FWEA Content Manager -> Photo Gallery module.`;
+  document.getElementById("sourceInfo").textContent = infoText;
 
   fetch(url)
     .then((response) => response.text())
@@ -29,26 +43,28 @@ function handleGenerate() {
         const header = document.createElement("h3");
         header.textContent = `${chapterName} - ${cols} Column Grid`;
         header.style.marginBottom = "4px";
-        sectionWrapper.appendChild(header);
+        header.style.fontWeight = "bold";
+        gridContainer.appendChild(header);
 
         const tip = document.createElement("p");
         tip.textContent = "Tip: Use Snipping Tool or Snagit to screenshot the desired layout.";
         tip.style.fontSize = "0.9em";
         tip.style.color = "#444";
         tip.style.marginBottom = "12px";
-        sectionWrapper.appendChild(tip);
+        gridContainer.appendChild(tip);
 
         const section = document.createElement("div");
         section.style.border = "1px solid #5d9f44";
         section.style.padding = "16px";
+        section.style.marginTop = "12px";
 
         const thanks = document.createElement("h1");
         thanks.textContent = `Thank you to our ${chapterName} Sponsors!`;
         thanks.style.fontFamily = "Poppins, sans-serif";
-        thanks.style.fontSize = "24px";
+        thanks.style.fontSize = "32px";
         thanks.style.color = "#086db6";
         thanks.style.textAlign = "center";
-        thanks.style.marginBottom = "16px";
+        thanks.style.margin = "12px 0 24px 0";
         section.appendChild(thanks);
 
         const gridWrapper = document.createElement("div");
