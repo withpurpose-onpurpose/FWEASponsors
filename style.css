@@ -1,37 +1,28 @@
-/* Base font and page style */
+/* Load Poppins properly */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 20px;
   background-color: #ffffff;
   color: #000000;
 }
 
-/* Centered container */
 .container {
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
 }
 
-/* Main heading */
+/* Page title */
 h1 {
   color: #086db6;
   font-size: 24px;
-  font-weight: 600;
   margin-bottom: 24px;
 }
 
-/* Subheadings for each grid layout */
-h3 {
-  color: #000000;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 4px;
-  text-align: left;
-}
-
-/* Labels */
+/* Chapter dropdown */
 label {
   font-weight: 500;
   display: block;
@@ -39,7 +30,6 @@ label {
   text-align: left;
 }
 
-/* Dropdown */
 select {
   padding: 8px;
   font-size: 16px;
@@ -66,12 +56,62 @@ button:hover {
   background-color: #086db6;
 }
 
-/* Grid wrapper styling for each layout */
+/* Each image grid layout block */
 .fweaSponsorGallery.variant {
   display: grid;
   gap: 4px;
   margin: auto;
   max-width: 960px;
+}
+
+/* Grid image anchors */
+.fweaSponsorGallery.variant a {
+  display: block;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+/* Grid images */
+.fweaSponsorGallery.variant img {
+  display: block;
+  width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* Header before each grid layout */
+h3 {
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 36px 0 4px;
+  text-align: left;
+}
+
+/* Tip for screenshot instructions */
+.tip {
+  font-size: 0.9em;
+  color: #444;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+/* Green frame around each grid */
+.grid-section {
+  border: 1px solid #5d9f44;
+  padding: 16px;
+  margin-top: 12px;
+}
+
+/* Blue thank-you header inside the frame */
+.grid-thanks {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #086db6;
+  text-align: center;
+  margin: 12px 0 24px;
 }
 
 /* Footer */
@@ -86,27 +126,12 @@ button:hover {
   text-decoration: none;
 }
 
-/* Tip text */
-.tip {
-  font-size: 0.9em;
-  color: #444;
-  margin-bottom: 12px;
-  text-align: left;
-}
-
-/* Section heading inside green border */
-.grid-thanks {
-  font-family: "Poppins", sans-serif;
-  font-size: 32px;
-  font-weight: 600;
-  color: #086db6;
+/* Info box for FWEA admin note */
+#sourceInfo {
+  font-size: 14px;
+  margin: 12px auto 24px;
   text-align: center;
-  margin: 12px 0 24px 0;
-}
-
-/* Section border frame */
-.grid-section {
-  border: 1px solid #5d9f44;
-  padding: 16px;
-  margin-top: 12px;
+  max-width: 800px;
+  color: #444;
+  line-height: 1.4;
 }
