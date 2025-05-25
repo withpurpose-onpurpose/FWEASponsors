@@ -22,16 +22,25 @@ function handleGenerate() {
       gridContainer.innerHTML = "";
 
       layoutOptions.forEach((cols) => {
+        const wrapperRow = document.createElement("div");
+        wrapperRow.style.display = "flex";
+        wrapperRow.style.alignItems = "center";
+        wrapperRow.style.justifyContent = "space-between";
+
         const title = document.createElement("h3");
         title.textContent = `${select.options[select.selectedIndex].text} - ${cols} Column Grid`;
-        gridContainer.appendChild(title);
+        wrapperRow.appendChild(title);
+
+        const downloadBtn = document.createElement("button");
+        downloadBtn.textContent = "Download this Grid as PNG";
+        downloadBtn.className = "download-button";
 
         const gridWrapper = document.createElement("div");
         gridWrapper.className = "fweaSponsorGallery variant";
         gridWrapper.style.display = "grid";
         gridWrapper.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-        gridWrapper.style.gap = "8px";
-        gridWrapper.style.marginBottom = "10px";
+        gridWrapper.style.gap = "4px";
+        gridWrapper.style.margin = "10px 0";
 
         imageLinks.forEach((imgEl) => {
           const img = new Image();
@@ -43,12 +52,11 @@ function handleGenerate() {
           gridWrapper.appendChild(img);
         });
 
-        gridContainer.appendChild(gridWrapper);
-
-        const downloadBtn = document.createElement("button");
-        downloadBtn.textContent = "Download this Grid as PNG";
         downloadBtn.onclick = () => downloadGridAsImage(gridWrapper);
-        gridContainer.appendChild(downloadBtn);
+
+        gridContainer.appendChild(wrapperRow);
+        gridContainer.appendChild(gridWrapper);
+        wrapperRow.appendChild(downloadBtn);
       });
     })
     .catch((err) => console.error("Failed to fetch grid:", err));
